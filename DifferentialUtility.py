@@ -97,7 +97,7 @@ def mixedPartial(prev, dx, dy):
     dudxdy = np.copy(prev)
     for i in range(1, len(prev) - 1):
         for j in range(1, len(prev[i]) - 1):
-            dudxdy[i, j] = (prev[i+1, j+1] - prev[i-1, j+1] - prev[i+1, j-1] - prev[i-1, j-1])/(4*dx*dy)
+            dudxdy[i, j] = (prev[i+1, j+1] - prev[i-1, j+1] - prev[i+1, j-1] + prev[i-1, j-1])/(4*dx*dy)
     
     return dudxdy
 
@@ -144,7 +144,7 @@ def levelSetPartials(prev, dx, dy):
 
     for i in range(1, len(prev) - 1):
         for j in range(1, len(prev[i]) - 1):
-            uxy[i, j] = (prev[i+1, j+1] - prev[i-1, j+1] - prev[i+1, j-1] - prev[i-1, j-1])/(4*dx*dy)
+            uxy[i, j] = (prev[i+1, j+1] - prev[i-1, j+1] - prev[i+1, j-1] + prev[i-1, j-1])/(4*dx*dy)
             uy[i, j] = (prev[i, j+1] - prev[i, j-1])/(2*dy)
             ux[i, j] = (prev[i+1, j] - prev[i-1, j])/(2*dx)
             uyy[i, j] = (prev[i, j+1] - (2*prev[i, j]) + prev[i, j-1])/(dy**2)
