@@ -4,28 +4,42 @@ from matplotlib import animation
 import matplotlib.pyplot as plt
 import numpy as np
 
+# Load image first, and uncomment question you want to run
+im = imread("images/daisy.jpg")
+if np.ndim(im) > 2:
+    R, G, B = im[:,:,0], im[:,:,1], im[:,:,2]
+    im = 0.2989 * R + 0.5870 * G + 0.1140 * B
+
 #QUESTION 1
 
-# fig,ax=plt.subplots(2,3)
-# im = imread("images/daisy.jpg")
-# im=im/255
-# org, im1=ip.processImage(im,'heat',5,.2)
-# org, im2=ip.processImage(im,'heat',10,.2)
-# org, im3=ip.processImage(im,'heat',20,.2)
-# ax[0,0].set_title("original")
-# ax[0,1].set_title("original")
-# ax[0,2].set_title("original")
-# ax[1,0].set_title("t=5")
-# ax[1,1].set_title("t=10")
-# ax[1,2].set_title("t=20")
-# ax[0,0].imshow(org,cmap='Greys_r')
-# ax[0,1].imshow(org,cmap='Greys_r')
-# ax[0,2].imshow(org,cmap='Greys_r')
-# ax[1,0].imshow(im1,cmap='Greys_r')
-# ax[1,1].imshow(im2,cmap='Greys_r')
-# ax[1,2].imshow(im3,cmap='Greys_r')
-# fig.suptitle("Heat Equation Daisy")
-# plt.show()
+fig,ax=plt.subplots(3,3, figsize = (8, 6))
+im = im/255
+org, im1=ip.processImage(im,'heat',5,.2)
+org, im2=ip.processImage(im,'heat',10,.2)
+org, im3=ip.processImage(im,'heat',20,.2)
+_, im4 = ip.processImage(im1, 'shock-filter', 100, 0.5)
+_, im5 = ip.processImage(im2, 'shock-filter', 100, 0.5)
+_, im6 = ip.processImage(im3, 'shock-filter', 100, 0.5)
+ax[0,0].set_title("original")
+ax[0,1].set_title("original")
+ax[0,2].set_title("original")
+ax[1,0].set_title("t=5, dt = 0.2")
+ax[1,1].set_title("t=10, dt = 0.2")
+ax[1,2].set_title("t=20, dt = 0.2")
+ax[2,0].set_title("t=105, dt = 0.5")
+ax[2,1].set_title("t=110, dt = 0.5")
+ax[2,2].set_title("t=120, dt = 0.5")
+ax[0,0].imshow(org,cmap='Greys_r')
+ax[0,1].imshow(org,cmap='Greys_r')
+ax[0,2].imshow(org,cmap='Greys_r')
+ax[1,0].imshow(im1,cmap='Greys_r')
+ax[1,1].imshow(im2,cmap='Greys_r')
+ax[1,2].imshow(im3,cmap='Greys_r')
+ax[2,0].imshow(im4,cmap='Greys_r')
+ax[2,1].imshow(im5,cmap='Greys_r')
+ax[2,2].imshow(im6,cmap='Greys_r')
+fig.suptitle("Heat Equation Daisy")
+plt.show()
 
 # fig,ax=plt.subplots(2,3)
 # im = imread("images/tile.jpg")
@@ -255,13 +269,13 @@ import numpy as np
 
 #QUESTION 4
 
-fig,ax=plt.subplots(1,2)
-im=imread("images/stocktonospreyblurnoise.jpg")
-im=im/255
-org, im1=ip.processImage(im,'level-set',15,.5,epsilon=0.00001)
-ax[0].set_title("original")
-ax[1].set_title("t=15")
-ax[0].imshow(org,cmap='Greys_r')
-ax[1].imshow(im1,cmap='Greys_r')
-fig.suptitle("Level Set Stockton Osprey")
-plt.show()
+# fig,ax=plt.subplots(1,2)
+# im=imread("images/stocktonospreyblurnoise.jpg")
+# im=im/255
+# org, im1=ip.processImage(im,'level-set',15,.5,epsilon=0.00001)
+# ax[0].set_title("original")
+# ax[1].set_title("t=15")
+# ax[0].imshow(org,cmap='Greys_r')
+# ax[1].imshow(im1,cmap='Greys_r')
+# fig.suptitle("Level Set Stockton Osprey")
+# plt.show()
