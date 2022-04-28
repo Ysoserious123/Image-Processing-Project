@@ -67,7 +67,7 @@ def runModifiedLevelSet(image, total_time, dt, epsilon, alpha):
 def processImage(image, method, total_time, dt, **kwargs):
 
     method_dict = {'heat': lambda : runHeatEquation(image, total_time, dt), 
-               'level-set': lambda : runLevelSet(image, total_time, dt, kwargs[0]), 
+               'level-set': lambda : runLevelSet(image, total_time, dt, kwargs["epsilon"]), 
                'modified-level-set': lambda : runModifiedLevelSet(image, total_time, dt, kwargs['epsilon'], kwargs['alpha'])
                }
 
