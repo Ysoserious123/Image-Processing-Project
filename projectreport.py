@@ -28,9 +28,9 @@ import numpy as np
 #plt.show()
 
 fig,ax=plt.subplots(1,2)
-im=imread("images/happyfacelight.jpg")
+im=imread("images/happyfacenoiseheavy.jpg")
 im=im/255
-org, im1=ip.processImage(im,'modified-level-set',10,.5,epsilon=0.00001,alpha=.2)
+org, im1=ip.processImage(im,'modified-level-set',10,.5,epsilon=0.00001,alpha=.01)
 ax[0].set_title("original")
 ax[1].set_title("t=10,a=.2")
 ax[0].imshow(org,cmap='Greys_r')
