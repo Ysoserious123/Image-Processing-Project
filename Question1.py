@@ -11,7 +11,7 @@ import numpy as np
 import PhotoProcessing as pp
 
 
-im = imread("images/jayden.jpg") # Load an image
+im = imread("images/blackhole.jpg") # Load an image
 
 if np.ndim(im) > 2:
     R, G, B = im[:,:,0], im[:,:,1], im[:,:,2]
@@ -49,11 +49,11 @@ original = np.copy(im)
 def animate(frames):
     global im, total_time, original
 
-    if (total_time<10):
-        dt = 0.2
-        # im = pp.modifiedLevelSet(im, original, 1, dt, 0.00000001, 0.3)
+    if (total_time<1):
+        dt = 0.5
+        im = pp.modifiedLevelSet(im, original, 1, dt, 0.00000001, 0.01)
         # im = pp.levelSet(im, 1, dt, 0.000001)
-        im = pp.heatEquation(im, 1, dt)
+        # im = pp.heatEquation(im, 1, dt)
         # im = pp.shockFilter(im, 1, dt)
     else:
         dt = 0.5

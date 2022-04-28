@@ -1,4 +1,5 @@
 import numpy as np
+from numba import jit
 import DifferentialUtility as diff
 
 def heatEquation(currentState, h, dt):

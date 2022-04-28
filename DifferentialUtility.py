@@ -1,4 +1,5 @@
 import numpy as np
+from numba import jit
 
 def secondPartialDerivativeX(prev, dx):
     ''' Calculates a numerical approximation for the second partial derivative wrt x in a 2-dimensional
@@ -101,6 +102,7 @@ def mixedPartial(prev, dx, dy):
     
     return dudxdy
 
+@jit
 def heatEquationPartials(prev, dx, dy):
     ''' Generates the spatial derivatives used in the 2-D heat equation Ut = Uxx + Uyy
 
@@ -123,6 +125,7 @@ def heatEquationPartials(prev, dx, dy):
 
     return (uxx, uyy)
 
+@jit
 def levelSetPartials(prev, dx, dy):
     ''' Generates the spatial derivatives used in the 2-D Level-Set equation Ut = ( (Ux^2 * Uyy) - 2 * (Ux * Uy * Uxy) + (Uy^2 * Uxx) ) / (Uxx^2 + Uyy^2)
 
@@ -151,6 +154,7 @@ def levelSetPartials(prev, dx, dy):
 
     return [ux, uy, uxy, uxx, uyy]
 
+@jit
 def shockFilterPartials(prev, dx, dy):
     ''' Generates the spatial derivatives used in the 2-D Shock-Filter equation Ut = -sqrt(Ux^2 + Uy^2) * (Uxx + Uyy)
     where Ux = min(forwardDiff, backwardDiff) if both are > 0, max(forwardDiff, backwardDiff) if both are < 0, and 0 if the signs are different
