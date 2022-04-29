@@ -10,8 +10,11 @@ import numpy as np
 
 import PhotoProcessing as pp
 
+import matplotlib as mpl 
+mpl.rcParams['animation.ffmpeg_path'] = r'C:\\Users\\Jayden Craft\\GNU Octave\\Octave-6.2.0\\mingw64\\bin\\ffmpeg.exe'
 
-im = imread("images/peanut.jpg") # Load an image
+
+im = imread("images/ilovemath.jpg") # Load an image
 
 if np.ndim(im) > 2:
     R, G, B = im[:,:,0], im[:,:,1], im[:,:,2]
@@ -52,11 +55,11 @@ original = np.copy(im)
 def animate(frames):
     global im, total_time, original
 
-    if (total_time<1000):
-        dt = 0.5
+    if (total_time<2):
+        dt = 0.01
         # im = pp.modifiedLevelSet(im, original, 1, dt, 0.00000001, 0.02)
-        im = pp.levelSet(im, 1, dt, 0.000001)
-        # im = pp.heatEquation(im, 1, dt)
+        # im = pp.levelSet(im, 1, dt, 0.000001)
+        im = pp.heatEquation(im, 1, dt)
         # im = pp.shockFilter(im, 1, dt)
     else:
         dt = 0.5
@@ -71,9 +74,13 @@ def animate(frames):
     # print(im)
     view.set_data(im)
 
+    return [view]
+
 def run_animate():
     global fig
-    anim = animation.FuncAnimation(fig, animate, frames = 100, interval = 1)
+    anim = animation.FuncAnimation(fig, animate, frames = 300, interval = 1, blit = True, save_count = int(10/0.01))
+    writervideo = animation.FFMpegWriter(fps = 60)
+    anim.save("test-figures/heat_then_shock-filter.gif", writer = writervideo)
     plt.show()
     return anim
 
