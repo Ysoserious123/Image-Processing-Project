@@ -202,95 +202,95 @@ import numpy as np
 
 
 
-#QUESTION 3
+# #QUESTION 3
 
 
 
-fig,ax=plt.subplots(1,2)
-im=imread("images/happyfacelight.jpg")
-im=im/255
-org, im1=ip.processImage(im,'level-set',15,.5,epsilon=0.0001)
-ax[0].set_title("original")
-ax[1].set_title("t=15, dt=.5")
-ax[0].imshow(org,cmap='Greys_r')
-ax[1].imshow(im1,cmap='Greys_r')
-fig.suptitle("Level Set Light Noise")
-plt.show()
-
-
-fig,ax=plt.subplots(1,2)
-im=imread("images/happyfacenoisemedium.jpg")
-im=im/255
-org, im1=ip.processImage(im,'level-set',10,.5,epsilon=0.00001)
-ax[0].set_title("original")
-ax[1].set_title("t=10, dt=.5")
-ax[0].imshow(org,cmap='Greys_r')
-ax[1].imshow(im1,cmap='Greys_r')
-fig.suptitle("Level Set Medium Noise")
-plt.show()
-
-
-
-fig,ax=plt.subplots(1,2)
-im=imread("images/happyfacenoiseheavy.jpg")
-im=im/255
-org, im1=ip.processImage(im,'level-set',15,.5,epsilon=0.00001)
-ax[0].set_title("original")
-ax[1].set_title("t=15, dt=.5")
-ax[0].imshow(org,cmap='Greys_r')
-ax[1].imshow(im1,cmap='Greys_r')
-fig.suptitle("Level Set Heavy Noise")
-plt.show()
-
-fig,ax=plt.subplots(1,2)
-im=imread("images/happyfacelight.jpg")
-im=im/255
-org, im1=ip.processImage(im,'modified-level-set',15,.5,epsilon=0.00001,alpha=.01)
-ax[0].set_title("original")
-ax[1].set_title("t=15,a=.01, dt=.5")
-ax[0].imshow(org,cmap='Greys_r')
-ax[1].imshow(im1,cmap='Greys_r')
-fig.suptitle("Modified Level Set Light Noise")
-plt.show()
-
-fig,ax=plt.subplots(1,2)
-im=imread("images/happyfacenoisemedium.jpg")
-im=im/255
-org, im1=ip.processImage(im,'modified-level-set',10,.5,epsilon=0.00001,alpha=.001)
-ax[0].set_title("original")
-ax[1].set_title("t=10,a=.001, dt=.5")
-ax[0].imshow(org,cmap='Greys_r')
-ax[1].imshow(im1,cmap='Greys_r')
-fig.suptitle("Modified Level Set Medium Noise")
-plt.show()
-
-fig,ax=plt.subplots(1,2)
-im=imread("images/happyfacenoiseheavy.jpg")
-im=im/255
-org, im1=ip.processImage(im,'modified-level-set',15,.5,epsilon=0.00001,alpha=.01)
-ax[0].set_title("original")
-ax[1].set_title("t=15,a=.01, dt=.5")
-ax[0].imshow(org,cmap='Greys_r')
-ax[1].imshow(im1,cmap='Greys_r')
-fig.suptitle("Modified Level Set Heavy Noise")
-plt.show()
-
-
-# #QUESTION 4
-
-# fig,ax=plt.subplots(1,3)
-# im=imread("images/stocktonospreyblurnoise.jpg")
+# fig,ax=plt.subplots(1,2)
+# im=imread("images/happyfacelight.jpg")
 # im=im/255
-# org, im1=ip.processImage(im,'modified-level-set',500,.5,epsilon=0.00001,alpha=.05)
-# _, im2 = ip.processImage(im1,'shock-filter', 900, 0.5)
+# org, im1=ip.processImage(im,'level-set',15,.5,epsilon=0.0001)
 # ax[0].set_title("original")
-# ax[1].set_title("MLS t=500, a=.05, dt=.5")
-# ax[2].set_title(" Shock Filter t=900, dt=.5")
+# ax[1].set_title("t=15, dt=.5")
 # ax[0].imshow(org,cmap='Greys_r')
 # ax[1].imshow(im1,cmap='Greys_r')
-# ax[2].imshow(im2,cmap='Greys_r')
-# fig.suptitle("Modified Level Set and Shock Stockton Osprey")
+# fig.suptitle("Level Set Light Noise")
 # plt.show()
+
+
+# fig,ax=plt.subplots(1,2)
+# im=imread("images/happyfacenoisemedium.jpg")
+# im=im/255
+# org, im1=ip.processImage(im,'level-set',10,.5,epsilon=0.00001)
+# ax[0].set_title("original")
+# ax[1].set_title("t=10, dt=.5")
+# ax[0].imshow(org,cmap='Greys_r')
+# ax[1].imshow(im1,cmap='Greys_r')
+# fig.suptitle("Level Set Medium Noise")
+# plt.show()
+
+
+
+# fig,ax=plt.subplots(1,2)
+# im=imread("images/happyfacenoiseheavy.jpg")
+# im=im/255
+# org, im1=ip.processImage(im,'level-set',15,.5,epsilon=0.00001)
+# ax[0].set_title("original")
+# ax[1].set_title("t=15, dt=.5")
+# ax[0].imshow(org,cmap='Greys_r')
+# ax[1].imshow(im1,cmap='Greys_r')
+# fig.suptitle("Level Set Heavy Noise")
+# plt.show()
+
+# fig,ax=plt.subplots(1,2)
+# im=imread("images/happyfacelight.jpg")
+# im=im/255
+# org, im1=ip.processImage(im,'modified-level-set',15,.5,epsilon=0.00001,alpha=.01)
+# ax[0].set_title("original")
+# ax[1].set_title("t=15,a=.01, dt=.5")
+# ax[0].imshow(org,cmap='Greys_r')
+# ax[1].imshow(im1,cmap='Greys_r')
+# fig.suptitle("Modified Level Set Light Noise")
+# plt.show()
+
+# fig,ax=plt.subplots(1,2)
+# im=imread("images/happyfacenoisemedium.jpg")
+# im=im/255
+# org, im1=ip.processImage(im,'modified-level-set',10,.5,epsilon=0.00001,alpha=.001)
+# ax[0].set_title("original")
+# ax[1].set_title("t=10,a=.001, dt=.5")
+# ax[0].imshow(org,cmap='Greys_r')
+# ax[1].imshow(im1,cmap='Greys_r')
+# fig.suptitle("Modified Level Set Medium Noise")
+# plt.show()
+
+# fig,ax=plt.subplots(1,2)
+# im=imread("images/happyfacenoiseheavy.jpg")
+# im=im/255
+# org, im1=ip.processImage(im,'modified-level-set',15,.5,epsilon=0.00001,alpha=.01)
+# ax[0].set_title("original")
+# ax[1].set_title("t=15,a=.01, dt=.5")
+# ax[0].imshow(org,cmap='Greys_r')
+# ax[1].imshow(im1,cmap='Greys_r')
+# fig.suptitle("Modified Level Set Heavy Noise")
+# plt.show()
+
+
+#QUESTION 4
+
+fig,ax=plt.subplots(1,3)
+im=imread("images/stocktonospreyblurnoise.jpg")
+im=im/255
+org, im1=ip.processImage(im,'modified-level-set',500,.5,epsilon=0.00001,alpha=.05)
+_, im2 = ip.processImage(im1,'shock-filter', 900, 0.5)
+ax[0].set_title("original")
+ax[1].set_title("MLS t=500, a=.05, dt=.5")
+ax[2].set_title(" Shock Filter t=1400, dt=.5")
+ax[0].imshow(org,cmap='Greys_r')
+ax[1].imshow(im1,cmap='Greys_r')
+ax[2].imshow(im2,cmap='Greys_r')
+fig.suptitle("Modified Level Set and Shock Stockton Osprey")
+plt.show()
 
 
 # # # QUESTION 5
