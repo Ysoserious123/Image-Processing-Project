@@ -2,6 +2,7 @@ import numpy as np
 from numba import jit
 import DifferentialUtility as diff
 
+@jit
 def heatEquation(currentState, h, dt):
     prev = np.copy(currentState)
 
@@ -17,6 +18,7 @@ def heatEquation(currentState, h, dt):
 
     return next
 
+@jit
 def levelSet(currentState, h, dt, epsilon):
     prev = np.copy(currentState)
 
@@ -29,6 +31,7 @@ def levelSet(currentState, h, dt, epsilon):
 
     return next
 
+@jit
 def shockFilter(currentState, h, dt):
     prev = np.copy(currentState)
 
@@ -39,6 +42,7 @@ def shockFilter(currentState, h, dt):
 
     return next
 
+@jit
 def modifiedLevelSet(currentState, original, h, dt, epsilon, alpha):
     prev = np.copy(currentState)
     ux, uy, uxy, uxx, uyy = diff.levelSetPartials(prev, h, h)

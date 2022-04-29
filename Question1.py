@@ -11,7 +11,7 @@ import numpy as np
 import PhotoProcessing as pp
 
 
-im = imread("images/blackhole.jpg") # Load an image
+im = imread("images/peanut.jpg") # Load an image
 
 if np.ndim(im) > 2:
     R, G, B = im[:,:,0], im[:,:,1], im[:,:,2]
@@ -20,7 +20,10 @@ if np.ndim(im) > 2:
 im = im/255 # Normalize the image (black and white scale with the largest value being 255)
 # print(im) # prints the image object (which is stored as a 2d numpy.ndarray) to the console
 
-fig = plt.figure()
+fig = plt.figure(figsize=(8,8))
+# mngr = plt.get_current_fig_manager()
+# mngr.window.set_geometry(50,100,640, 545)
+
 view = plt.imshow(im, cmap = 'Greys_r')
 
 total_time = 0.0
@@ -49,10 +52,10 @@ original = np.copy(im)
 def animate(frames):
     global im, total_time, original
 
-    if (total_time<1):
+    if (total_time<1000):
         dt = 0.5
-        im = pp.modifiedLevelSet(im, original, 1, dt, 0.00000001, 0.01)
-        # im = pp.levelSet(im, 1, dt, 0.000001)
+        # im = pp.modifiedLevelSet(im, original, 1, dt, 0.00000001, 0.02)
+        im = pp.levelSet(im, 1, dt, 0.000001)
         # im = pp.heatEquation(im, 1, dt)
         # im = pp.shockFilter(im, 1, dt)
     else:
