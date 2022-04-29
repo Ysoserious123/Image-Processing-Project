@@ -10,9 +10,6 @@ import numpy as np
 
 import PhotoProcessing as pp
 
-import matplotlib as mpl 
-mpl.rcParams['animation.ffmpeg_path'] = r'C:\\Users\\Jayden Craft\\GNU Octave\\Octave-6.2.0\\mingw64\\bin\\ffmpeg.exe'
-
 
 im = imread("images/ilovemath.jpg") # Load an image
 
@@ -30,25 +27,6 @@ fig = plt.figure(figsize=(8,8))
 view = plt.imshow(im, cmap = 'Greys_r')
 
 total_time = 0.0
-# fig, ax = plt.subplots(1, 2, figsize = (8, 6))
-# total_time = 10.0
-# dt = 0.5
-# org, im = pp.processImage(im, 'modified-level-set', total_time, dt, epsilon = 0.00001, alpha = 0.01)
-# # org, im = pp.runModifiedLevelSet(im, total_time, dt, 0.0001, 0.5)
-
-# view = ax[1].imshow(im, cmap = 'Greys_r') # plots the image using a greyscale color map with white = 1, black = 0
-# ax[0].imshow(org, cmap = "Greys_r")
-# fig.suptitle("time = %.2f, dt = %.2f, alpha = %.2f" % (total_time, dt, 0.01))
-
-# fig.colorbar(view, ax=ax) # adds a color bar to show the scale of the plotted values
-
-# plt.show() # makes the plot visible in a separate window
-
-# total_time = 0.0
-
-# for i in range(100):
-#     im = heatEquation(im, 0.2, 0.0001)
-#     im = im/np.max(im)
 
 original = np.copy(im)
 
@@ -79,8 +57,8 @@ def animate(frames):
 def run_animate():
     global fig
     anim = animation.FuncAnimation(fig, animate, frames = 300, interval = 1, blit = True, save_count = int(10/0.01))
-    writervideo = animation.FFMpegWriter(fps = 60)
-    anim.save("test-figures/heat_then_shock-filter.gif", writer = writervideo)
+    # writervideo = animation.FFMpegWriter(fps = 60)
+    # anim.save("test-figures/heat_then_shock-filter.gif", writer = writervideo)
     plt.show()
     return anim
 
