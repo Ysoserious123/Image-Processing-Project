@@ -11,7 +11,7 @@ import numpy as np
 import PhotoProcessing as pp
 
 
-im = imread("images/ilovemath.jpg") # Load an image
+im = imread("images/shapes.jpg") # Load an image
 
 if np.ndim(im) > 2:
     R, G, B = im[:,:,0], im[:,:,1], im[:,:,2]
@@ -26,18 +26,22 @@ fig = plt.figure(figsize=(8,8))
 
 view = plt.imshow(im, cmap = 'Greys_r')
 
+# title = fig.text(0, 0, "")
+
+# print(type(title))
+
 total_time = 0.0
 
 original = np.copy(im)
 
 def animate(frames):
-    global im, total_time, original
+    global im, total_time, original, fig
 
-    if (total_time<2):
-        dt = 0.01
+    if (total_time<400):
+        dt = 0.5
         # im = pp.modifiedLevelSet(im, original, 1, dt, 0.00000001, 0.02)
-        # im = pp.levelSet(im, 1, dt, 0.000001)
-        im = pp.heatEquation(im, 1, dt)
+        im = pp.levelSet(im, 1, dt, 0.000001)
+        # im = pp.heatEquation(im, 1, dt)
         # im = pp.shockFilter(im, 1, dt)
     else:
         dt = 0.5
@@ -47,6 +51,7 @@ def animate(frames):
     # im = pp.heatEquation(im, 1, dt)
 
     total_time += dt
+    # title.set_text("time = %.2f, dt = %.2f" % (total_time, dt))
     plt.title("time = %.2f, dt = %.2f" % (total_time, dt))
     # print(im.shape)
     # print(im)
@@ -56,7 +61,7 @@ def animate(frames):
 
 def run_animate():
     global fig
-    anim = animation.FuncAnimation(fig, animate, frames = 300, interval = 1, blit = True, save_count = int(10/0.01))
+    anim = animation.FuncAnimation(fig, animate, frames = 300, interval = 1)
     # writervideo = animation.FFMpegWriter(fps = 60)
     # anim.save("test-figures/heat_then_shock-filter.gif", writer = writervideo)
     plt.show()

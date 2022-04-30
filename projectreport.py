@@ -99,28 +99,28 @@ import numpy as np
 
 
 
-# fig,ax=plt.subplots(1,6)
-# im=imread("images/shapes.jpg")
-# im=im/225
-# org, im1=ip.processImage(im,'level-set',25,.5,epsilon=.000001)
-# org, im2=ip.processImage(im,'level-set',50,.5,epsilon=.000001)
-# org, im3=ip.processImage(im,'level-set',150,.5,epsilon=.000001)
-# org, im4=ip.processImage(im,'level-set',250,.5,epsilon=.000001)
-# org, im5=ip.processImage(im,'level-set',350,.5,epsilon=.000001)
-# ax[0].set_title("original")
-# ax[1].set_title("t=25, dt=.5")
-# ax[2].set_title("t=50, dt=.5")
-# ax[3].set_title("t=150, dt=.5")
-# ax[4].set_title("t=250, dt=.5")
-# ax[5].set_title("t=350, dt=.5")
-# ax[0].imshow(org,cmap='Greys_r')
-# ax[1].imshow(im1,cmap='Greys_r')
-# ax[2].imshow(im2,cmap='Greys_r')
-# ax[3].imshow(im3,cmap='Greys_r')
-# ax[4].imshow(im4,cmap='Greys_r')
-# ax[5].imshow(im5,cmap='Greys_r')
-# fig.suptitle("Level Set Shapes")
-# plt.show()
+fig,ax=plt.subplots(1,6)
+im=imread("images/shapes.jpg")
+im=im/225
+org, im1=ip.processImage(im,'level-set',25,.5,epsilon=.000001)
+org, im2=ip.processImage(im,'level-set',50,.5,epsilon=.000001)
+org, im3=ip.processImage(im,'level-set',150,.5,epsilon=.000001)
+org, im4=ip.processImage(im,'level-set',250,.5,epsilon=.000001)
+org, im5=ip.processImage(im,'level-set',350,.5,epsilon=.000001)
+ax[0].set_title("original")
+ax[1].set_title("t=25, dt=.5")
+ax[2].set_title("t=50, dt=.5")
+ax[3].set_title("t=150, dt=.5")
+ax[4].set_title("t=250, dt=.5")
+ax[5].set_title("t=350, dt=.5")
+ax[0].imshow(org,cmap='Greys_r')
+ax[1].imshow(im1,cmap='Greys_r')
+ax[2].imshow(im2,cmap='Greys_r')
+ax[3].imshow(im3,cmap='Greys_r')
+ax[4].imshow(im4,cmap='Greys_r')
+ax[5].imshow(im5,cmap='Greys_r', vmin = 0, vmax = 1)
+fig.suptitle("Level Set Shapes")
+plt.show()
 
 
 
@@ -278,19 +278,19 @@ import numpy as np
 
 #QUESTION 4
 
-fig,ax=plt.subplots(1,3)
-im=imread("images/stocktonospreyblurnoise.jpg")
-im=im/255
-org, im1=ip.processImage(im,'modified-level-set',500,.5,epsilon=0.00001,alpha=.05)
-_, im2 = ip.processImage(im1,'shock-filter', 900, 0.5)
-ax[0].set_title("original")
-ax[1].set_title("MLS t=500, a=.05, dt=.5")
-ax[2].set_title(" Shock Filter t=1400, dt=.5")
-ax[0].imshow(org,cmap='Greys_r')
-ax[1].imshow(im1,cmap='Greys_r')
-ax[2].imshow(im2,cmap='Greys_r')
-fig.suptitle("Modified Level Set and Shock Stockton Osprey")
-plt.show()
+# fig,ax=plt.subplots(1,3)
+# im=imread("images/stocktonospreyblurnoise.jpg")
+# im=im/255
+# org, im1=ip.processImage(im,'modified-level-set',500,.5,epsilon=0.00001,alpha=.05)
+# _, im2 = ip.processImage(im1,'shock-filter', 900, 0.5)
+# ax[0].set_title("original")
+# ax[1].set_title("MLS t=500, a=.05, dt=.5")
+# ax[2].set_title(" Shock Filter t=1400, dt=.5")
+# ax[0].imshow(org,cmap='Greys_r')
+# ax[1].imshow(im1,cmap='Greys_r')
+# ax[2].imshow(im2,cmap='Greys_r')
+# fig.suptitle("Modified Level Set and Shock Stockton Osprey")
+# plt.show()
 
 
 # # # QUESTION 5
@@ -312,4 +312,31 @@ plt.show()
 
 # # fig.suptitle("Shock Filter Jayden")
 # # plt.show()
+
+#  QUESTION 5 CONTINUED (woman.jpg)
+
+# im = imread('images/woman.jpg')
+
+# if np.ndim(im) > 2:
+#     R, G, B = im[:,:,0], im[:,:,1], im[:,:,2]
+#     im = 0.2989 * R + 0.5870 * G + 0.1140 * B
+
+# im = im/255
+
+# fig, ax = plt.subplots(1, 2)
+
+# fig.suptitle("Shock-FIlter for t = 200, dt = 0.1")
+
+# org, im1 = ip.processImage(im, 'shock-filter', 200, 0.1)
+
+# # _, im2 = ip.processImage(im1, 'shock-filter', 100, 0.5)
+
+# ax[0].imshow(org, cmap = "Greys_r")
+# ax[1].imshow(im1, cmap = "Greys_r")
+# # ax[2].imshow(im2, cmap = "Greys_r")
+
+
+# # fig.text(0.25,0.1,'Seeing the effect of shock filter after applying level set is very difficult to see \nas this image has high resolution, making edges very thin. If you look closely you can see the effect\nof shock-filer around the chair, my shirtline, my eyes, and maybe a little in my hair.',transform=fig.transFigure)
+
+# plt.show()
 
