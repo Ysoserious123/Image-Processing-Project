@@ -11,7 +11,7 @@ import numpy as np
 import PhotoProcessing as pp
 
 
-im = imread("images/shapes.jpg") # Load an image
+im = imread("images/curvebdry.jpg") # Load an image
 
 if np.ndim(im) > 2:
     R, G, B = im[:,:,0], im[:,:,1], im[:,:,2]
@@ -23,6 +23,7 @@ im = im/255 # Normalize the image (black and white scale with the largest value 
 fig = plt.figure(figsize=(8,8))
 # mngr = plt.get_current_fig_manager()
 # mngr.window.set_geometry(50,100,640, 545)
+
 
 view = plt.imshow(im, cmap = 'Greys_r')
 
@@ -37,8 +38,8 @@ original = np.copy(im)
 def animate(frames):
     global im, total_time, original, fig
 
-    if (total_time<400):
-        dt = 0.5
+    if (total_time<10000):
+        dt = 0.2
         # im = pp.modifiedLevelSet(im, original, 1, dt, 0.00000001, 0.02)
         im = pp.levelSet(im, 1, dt, 0.000001)
         # im = pp.heatEquation(im, 1, dt)
@@ -61,7 +62,7 @@ def animate(frames):
 
 def run_animate():
     global fig
-    anim = animation.FuncAnimation(fig, animate, frames = 300, interval = 1)
+    anim = animation.FuncAnimation(fig, animate, frames = 300, interval = 1, blit = True)
     # writervideo = animation.FFMpegWriter(fps = 60)
     # anim.save("test-figures/heat_then_shock-filter.gif", writer = writervideo)
     plt.show()

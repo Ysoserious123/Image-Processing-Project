@@ -13,10 +13,10 @@ def secondPartialDerivativeX(prev, dx):
     Returns:
         the approximate second derivative in the x-direction of an unspecified function f: R^2 -> R
     '''
-
+    # prev[i+1][j][k][j]... Java 
     d2x = np.copy(prev)
-    for i in range(1, len(prev) - 1):
-        for j in range(1, len(prev[i]) - 1):
+    for i in range(1, len(prev) - 1):                       # 0, 1, 2, 3, 4, but length = 5
+        for j in range(1, len(prev[i]) - 1): # [1, length-1) {1, 2, 3, 4, 5} 
             d2x[i, j] = (prev[i+1, j] - (2*prev[i, j]) + prev[i-1, j])/(dx**2)
 
     return d2x
@@ -123,7 +123,7 @@ def heatEquationPartials(prev, dx, dy):
             uxx[i, j] = (prev[i+1, j] - (2*prev[i, j]) + prev[i-1, j])/(dx**2)
             uyy[i, j] = (prev[i, j+1] - (2*prev[i, j]) + prev[i, j-1])/(dy**2)
 
-    return (uxx, uyy)
+    return (uxx, uyy) # tuple, not an array
 
 @jit
 def levelSetPartials(prev, dx, dy):
@@ -152,7 +152,7 @@ def levelSetPartials(prev, dx, dy):
             uyy[i, j] = (prev[i, j+1] - (2*prev[i, j]) + prev[i, j-1])/(dy**2)
             uxx[i, j] = (prev[i+1, j] - (2*prev[i, j]) + prev[i-1, j])/(dx**2)
 
-    return [ux, uy, uxy, uxx, uyy]
+    return (ux, uy, uxy, uxx, uyy)
 
 @jit
 def shockFilterPartials(prev, dx, dy):
@@ -198,6 +198,6 @@ def shockFilterPartials(prev, dx, dy):
             uyy[i, j] = (prev[i, j+1] - (2*prev[i, j]) + prev[i, j-1])/(dy**2)
             uxx[i, j] = (prev[i+1, j] - (2*prev[i, j]) + prev[i-1, j])/(dx**2)
 
-    return [ux, uy, uxx, uyy]
+    return (ux, uy, uxx, uyy)
 
 

@@ -8,7 +8,8 @@ def heatEquation(currentState, h, dt):
 
     uxx, uyy = diff.heatEquationPartials(prev, h, h)
 
-    prev[1:-1, 1:-1] = prev[1:-1, 1:-1] + (dt)*(uxx + uyy)[1:-1, 1:-1]
+    # new T             Old T               dt   * differentials
+    prev[1:-1, 1:-1] = prev[1:-1, 1:-1] + (dt)*(uxx + uyy)[1:-1, 1:-1] # forward difference method for time
 
     # We only want to add up everything except the edges, so we do that
     # prev[1:-1, 1:-1] = prev[1:-1, 1:-1] + (dt/(h**2))*(secondPartialDerivativeX(prev, h) + secondPartialDerivativeY(prev, h))[1:-1, 1:-1]
@@ -23,7 +24,7 @@ def levelSet(currentState, h, dt, epsilon):
     prev = np.copy(currentState)
 
     ux, uy, uxy, uxx, uyy = diff.levelSetPartials(prev, h, h)
-    prev[1:-1, 1:-1] = prev[1:-1, 1:-1] + (dt)*((((ux**2)*uyy) - (2*ux*uy*uxy) + ((uy**2)*uxx)) / (ux**2 + uy**2 + epsilon))[1:-1, 1:-1]
+    prev[1:-1, 1:-1] = prev[1:-1 , 1:-1] + (dt)*((((ux**2)*uyy) - (2*ux*uy*uxy) + ((uy**2)*uxx)) / (ux**2 + uy**2 + epsilon))[1:-1, 1:-1]
 
     # prev[1:-1, 1:-1] = prev[1:-1, 1:-1] + (dt/(h**2))*((((partialDerivativeX(prev, h)**2)*secondPartialDerivativeY(prev, h)) - (2*partialDerivativeX(prev, h)*partialDerivativeY(prev, h)*mixedPartial(prev, h, h)) + ((partialDerivativeY(prev, h)**2)*secondPartialDerivativeX(prev, h))) / (partialDerivativeX(prev, h)**2 + partialDerivativeY(prev, h)**2 + epsilon))[1:-1, 1:-1]
 
@@ -88,12 +89,10 @@ def runShockFilter(image, total_time, dt):
         time += dt
     return (initial_image, image)
 
-def processImage(image, method, total_time, dt, **kwargs):
 
-    # threadsperblock = (16, 16)
-    # blockspergrid_x = int(np.ceil(image.shape[0] / threadsperblock[0]))
-    # blockspergrid_y = int(np.ceil(image.shape[1] / threadsperblock[1]))
-    # blockspergrid = (blockspergrid_x, blockspergrid_y)
+# kwargs: keyword arguments
+
+def processImage(image, method, total_time, dt, **kwargs):
 
     method_dict = {'heat': lambda : runHeatEquation(image, total_time, dt), 
                'level-set': lambda : runLevelSet(image, total_time, dt, kwargs["epsilon"]), 
@@ -101,5 +100,5 @@ def processImage(image, method, total_time, dt, **kwargs):
                'shock-filter': lambda : runShockFilter(image, total_time, dt)
                }
 
-    return method_dict[method]()
+    return method_dict[method]() # returning an original image and the the new image
     
